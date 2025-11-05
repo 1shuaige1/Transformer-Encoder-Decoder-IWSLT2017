@@ -14,8 +14,12 @@
 
 项目支持命令行超参配置、自动下载数据集、保存模型与训练验证曲线。
 
-## 📂 项目结构
+本项目是《大模型基础与应用》课程的期中作业实现。  
+实现完整 **Encoder–Decoder Transformer**，包含 **相对位置编码（T5 风格）** 与 **超参数敏感性分析**。
 
+---
+
+## 📂 项目结构
 Transformer-IWSLT2017/
 │
 ├── src/
@@ -34,40 +38,6 @@ Transformer-IWSLT2017/
 ---
 
 ## ⚙️ 环境与硬件要求
-
-| 组件 | 推荐版本 | 说明 |
-|------|-----------|------|
-| Python | ≥ 3.9 | 3.9~3.11均可 |
-| PyTorch | ≥ 2.0 | 支持 CUDA |
-| transformers | ≥ 4.44 | Hugging Face Tokenizer |
-| datasets | ≥ 3.0 | 自动下载 IWSLT2017 |
-| GPU | RTX 3060 / A100 / T4 | 推荐显存 ≥ 6GB |
-| 操作系统 | Linux / Windows | 均可运行 |
-
----
-
-## 📦 安装依赖
-
-```bash
-pip install -r requirements.txt
-
-### 相对位置偏置
-采用 T5 风格的相对位置偏置实现：
-- 创建大小为 (2*max_distance+1, num_heads) 的偏置表
-- 对于位置 i 和 j 之间的注意力分数添加偏置 b_{i-j}
-- 通过学习的方式获取相对位置信息，相比绝对位置编码更具表达能力
-
-### 模型配置
-默认模型配置：
-- d_model: 256 (模型维度)
-- num_layers: 4 (编码器和解码器层数)
-- num_heads: 8 (注意力头数)
-- d_ff: 1024 (前馈网络维度)
-- dropout: 0.1 (Dropout 概率)
-- max_len: 128 (最大序列长度)
-- vocab_size: 16000 (词汇表大小)
-
-## ⚙️ 环境配置
 
 ### 依赖项
 项目依赖以下 Python 包：
