@@ -47,6 +47,22 @@ Transformer-IWSLT2017/
 | GPU | RTX 3060 / A100 / T4 | 推荐显存 ≥ 6GB |
 | 操作系统 | Linux / Windows | 均可运行 |
 
+---
+
+## 📦 安装依赖
+
+```bash
+pip install -r requirements.txt
+
+requirements.txt 内容：
+torch>=2.0
+datasets>=3.0.0
+transformers>=4.44.0
+tqdm
+matplotlib
+numpy
+
+
 ### 依赖项
 项目依赖以下 Python 包：
 - `torch>=2.0.0`：深度学习框架
