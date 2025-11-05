@@ -14,12 +14,10 @@
 
 项目支持命令行超参配置、自动下载数据集、保存模型与训练验证曲线。
 
-本项目是《大模型基础与应用》课程的期中作业实现。  
-实现完整 **Encoder–Decoder Transformer**，包含 **相对位置编码（T5 风格）** 与 **超参数敏感性分析**。
-
 ---
 
 ## 📂 项目结构
+```
 Transformer-IWSLT2017/
 │
 ├── src/
@@ -34,6 +32,7 @@ Transformer-IWSLT2017/
 │
 ├── requirements.txt # 依赖库清单
 └── README.md # 本文件
+```
 
 ---
 
