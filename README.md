@@ -6,11 +6,50 @@
 
 ## 模型架构
 
-本项目实现了完整的：
-- **Multi-Head Self-Attention**
-- **Position-wise Feed Forward Network**
-- **Residual Connection + Layer Normalization**
-- **Sinusoidal 或 Learned 位置编码**
+模型实现了完整的：
+- Multi-Head Self-Attention  
+- Position-wise Feed Forward Network  
+- Residual Connection + Layer Normalization  
+- Sinusoidal 或 Learned 位置编码  
+
+项目支持命令行超参配置、自动下载数据集、保存模型与训练验证曲线。
+
+## 📂 项目结构
+
+Transformer-IWSLT2017/
+│
+├── src/
+│ ├── train.py # 主训练脚本：参数解析、训练循环、评估
+│ ├── model.py # Transformer 模型定义（Encoder/Decoder）
+│ └── data.py # 数据加载、分词、批处理封装
+│
+├── scripts/
+│ └── run.sh # 一键训练脚本（含完整命令行）
+│
+├── results/ # 存放训练曲线(loss_curve.png)、模型权重(epochX.pt)
+│
+├── requirements.txt # 依赖库清单
+└── README.md # 本文件
+
+---
+
+## ⚙️ 环境与硬件要求
+
+| 组件 | 推荐版本 | 说明 |
+|------|-----------|------|
+| Python | ≥ 3.9 | 3.9~3.11均可 |
+| PyTorch | ≥ 2.0 | 支持 CUDA |
+| transformers | ≥ 4.44 | Hugging Face Tokenizer |
+| datasets | ≥ 3.0 | 自动下载 IWSLT2017 |
+| GPU | RTX 3060 / A100 / T4 | 推荐显存 ≥ 6GB |
+| 操作系统 | Linux / Windows | 均可运行 |
+
+---
+
+## 📦 安装依赖
+
+```bash
+pip install -r requirements.txt
 
 ### 相对位置偏置
 采用 T5 风格的相对位置偏置实现：
@@ -27,37 +66,6 @@
 - dropout: 0.1 (Dropout 概率)
 - max_len: 128 (最大序列长度)
 - vocab_size: 16000 (词汇表大小)
-
----
-
-## 📂 文件结构
-```
-src/
-├── model_relpos.py           # 模型定义（Encoder–Decoder + 相对位置偏置）
-├── data_iwslt.py             # 数据加载与 SentencePiece 分词器
-├── train_mt.py               # 训练与验证
-├── eval_bleu.py              # BLEU 评估
-├── sample_mt.py              # 翻译示例
-├── run_sensitivity.py        # 超参数敏感性分析脚本
-├── ablation/                 # 消融实验相关文件
-│   ├── model_ablation.py     # 支持消融实验的模型实现
-│   ├── model_no_relpos.py    # 无相对位置偏置的模型变体
-│   ├── train_ablation.py     # 消融实验训练脚本
-│   ├── run_ablation_relpos.py# 相对位置偏置消融实验
-│   └── run_comprehensive_ablation_v2.py # 综合消融实验
-scripts/
-├── run_iwslt.sh              # 一键运行脚本
-results/
-├── run_experiments/          # 各实验结果目录
-│   ├── run_base/             # 基线模型结果
-│   └── sensitivity/          # 超参分析实验结果
-├── ablation_comprehensive_summary.csv # 消融实验结果汇总
-├── sensitivity_d_model.csv   # d_model 敏感性分析结果
-├── sensitivity_num_layers.csv# 层数敏感性分析结果
-└── sensitivity_batch_size.csv# 批大小敏感性分析结果
-```
-
----
 
 ## ⚙️ 环境配置
 
