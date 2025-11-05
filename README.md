@@ -1,18 +1,16 @@
 # Transformer-Encoder-Decoder-IWSLT2017
 
-本项目是《大模型基础与应用》课程的期中作业实现。  
-实现完整 **Encoder–Decoder Transformer**，包含 **相对位置编码（T5 风格）** 与 **超参数敏感性分析**。
+本项目实现了一个 从零构建的 Transformer 模型（Encoder-Decoder 架构），在 IWSLT2017 英德翻译数据集（en→de） 上进行训练与验证。
 
 ---
 
-## 🏗️ 模型架构
+## 模型架构
 
-### Transformer 架构
-本项目实现了标准的 Transformer Encoder-Decoder 架构，包含以下核心组件：
-- **多头注意力机制**：支持自注意力和交叉注意力
-- **前馈神经网络**：位置前馈网络（Position-wise Feed-Forward Networks）
-- **残差连接与层归一化**：增强梯度流动和训练稳定性
-- **相对位置偏置**：T5 风格的相对位置编码，增强模型对序列位置信息的感知
+本项目实现了完整的：
+- **Multi-Head Self-Attention**
+- **Position-wise Feed Forward Network**
+- **Residual Connection + Layer Normalization**
+- **Sinusoidal 或 Learned 位置编码**
 
 ### 相对位置偏置
 采用 T5 风格的相对位置偏置实现：
