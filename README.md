@@ -53,6 +53,7 @@ Transformer-IWSLT2017/
 
 ```bash
 pip install -r requirements.txt
+```
 
 requirements.txt 内容：
 torch>=2.0
@@ -62,6 +63,7 @@ tqdm
 matplotlib
 numpy
 
+---
 
 ### 依赖项
 项目依赖以下 Python 包：
@@ -73,10 +75,6 @@ numpy
 - `tqdm`：进度条显示
 - `matplotlib`：结果可视化
 
-### 安装依赖
-```bash
-python -m pip install -r requirements.txt
-```
 
 ### 硬件要求
 - GPU：推荐使用 CUDA 兼容的 GPU 以加速训练
