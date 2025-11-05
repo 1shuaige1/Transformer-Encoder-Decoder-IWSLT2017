@@ -38,6 +38,15 @@ Transformer-IWSLT2017/
 
 ## ⚙️ 环境与硬件要求
 
+| 组件 | 推荐版本 | 说明 |
+|------|-----------|------|
+| Python | ≥ 3.9 | 3.9~3.11均可 |
+| PyTorch | ≥ 2.0 | 支持 CUDA |
+| transformers | ≥ 4.44 | Hugging Face Tokenizer |
+| datasets | ≥ 3.0 | 自动下载 IWSLT2017 |
+| GPU | RTX 3060 / A100 / T4 | 推荐显存 ≥ 6GB |
+| 操作系统 | Linux / Windows | 均可运行 |
+
 ### 依赖项
 项目依赖以下 Python 包：
 - `torch>=2.0.0`：深度学习框架
