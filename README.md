@@ -96,6 +96,20 @@ python src/train.py \
 ## 实验可复现性
 为确保实验结果完全可重复，代码中固定了所有随机种子。
 ```
+random.seed(42)
+np.random.seed(42)
+torch.manual_seed(42)
+torch.cuda.manual_seed_all(42)
+```
+- 数据加载与划分：使用 Hugging Face datasets 提供的官方 IWSLT2017 (en→de) 版本
+- Tokenizer：Helsinki-NLP/opus-mt-en-de
+- 样本数量：limit_train_samples = 48880
+- 验证集使用官方 validation split
+- 优化器：AdamW(lr=3e-4)
+- Loss：CrossEntropy(ignore_index=pad_id)
+- Gradient Clip：max_norm=1.0
+
+---
 
 ## 🧪 示例用法
 
