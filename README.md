@@ -16,7 +16,9 @@ Transformer-IWSLT2017/
 ├── scripts/
 │ └── run.sh # 一键训练脚本（含完整命令行）
 │
-├── results/ # 存放训练曲线(loss_curve.png)、模型权重(epochX.pt)
+├── results/
+│ ├── loss_curve.png # 训练验证loss曲线
+│ └── results_table.csv # 消融实验对比结果
 │
 ├── requirements.txt # 依赖库清单
 └── README.md # 本文件
@@ -150,19 +152,23 @@ torch.cuda.manual_seed_all(42)
 ```
 results/
 │
-├── epoch1.pt
-├── epoch2.pt
-├── ...
-├── epoch10.pt
-├── best_model.pt
 ├── loss_curve.png
+├── results_table.csv
 └── train_log.txt
 ```
 
-**曲线示例说明：**
+**LOSS曲线示例说明：**
 
 <img width="640" height="480" alt="loss_curve" src="https://github.com/user-attachments/assets/4a28fbd7-d52c-432b-9b48-268115abae5a" />
 
 - 蓝色曲线（Train Loss）：训练集损失，应随 epoch 稳定下降；
 - 橙色曲线（Validation Loss）：验证集损失，通常在 5～8 轮后趋于平稳；
 - 若验证损失上升，说明模型开始过拟合，可考虑增大 dropout、引入学习率调度或早停策略。
+
+**消融实验结果**
+| n_heads | n_layers | d_model | dropout | use_learne | final_train_loss | final_val_loss |
+| :---: | :---: | :---: | :---: | :---: | :---: | :---: |
+| 4 | 2 | 256 | 0.1 | TRUE | 2.856 | 3.220 |
+| 4 | 2 | 256 | 0.1 | FALSE | 3.092 | 3.573 |
+| 8 | 3 | 512 | 0.1 | TRUE | 2.634 | 3.012 |
+| 8 | 3 | 512 | 0.1 | FALSE | 2.954 | 3.427 |
