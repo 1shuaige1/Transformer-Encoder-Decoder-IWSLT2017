@@ -79,6 +79,7 @@ python src/train.py \
   --device cuda \
   --save_dir results
 ```
+
 ---
 
 ## 实验可复现性
@@ -96,6 +97,41 @@ torch.cuda.manual_seed_all(42)
 - 优化器：AdamW(lr=3e-4)
 - Loss：CrossEntropy(ignore_index=pad_id)
 - Gradient Clip：max_norm=1.0
+
+---
+
+## 模型结构概览
+
+模型文件：src/model.py
+
+| 模块 | 功能 |
+|------|------|
+| MultiHeadAttention | 多头自注意力机制 |
+| PositionwiseFeedForward | 前馈神经网络（ReLU + Dropout） |
+| PositionalEncoding | 正弦位置编码（或可学习） |
+| EncoderLayer | 自注意力 + FFN + 残差层 |
+| DecoderLayer | Masked Self-Attn + Cross-Attn + FFN |
+| TransformerModel | 整体 Encoder-Decoder 框架 |
+
+---
+
+## 训练过程参数
+
+| 参数 | 默认值 | 说明 |
+|------|---------|------|
+| --epochs | 10 | 训练轮数 |
+| --batch_size | 64 | 批大小 |
+| --d_model | 256 | Embedding维度 |
+| --n_heads | 4 | 注意力头数 |
+| --n_layers | 2 | Encoder/Decoder层数 |
+| --d_ff | 1024 | FFN隐藏层维度 |
+| --dropout | 0.1 | Dropout比例 |
+| --lr | 3e-4 | 学习率 |
+| --max_len | 128 | 最大序列长度 |
+| --limit_train_samples | 48880 | 训练样本上限 |
+| --seed | 42 | 随机种子（保证复现） |
+| --device | cuda | 运行设备 |
+| --save_dir | results | 模型保存目录 |
 
 ---
 
@@ -128,22 +164,3 @@ results/
 - 蓝色曲线（Train Loss）：训练集损失，应随 epoch 稳定下降；
 - 橙色曲线（Validation Loss）：验证集损失，通常在 5～8 轮后趋于平稳；
 - 若验证损失上升，说明模型开始过拟合，可考虑增大 dropout、引入学习率调度或早停策略。
-
----
-
-## 模型结构概览
-
-**模型文件：** `src/model.py`
-
----
-
-| 模块 | 功能说明 |
-|------|-----------|
-| `MultiHeadAttention` | 多头自注意力机制（Multi-Head Self-Attention），并行计算多个注意力头以捕获不同语义关系 |
-| `PositionwiseFeedForward` | 前馈神经网络（ReLU + Dropout），对每个位置独立进行非线性变换 |
-| `PositionalEncoding` | 正弦位置编码（或可学习），为模型引入序列位置信息 |
-| `EncoderLayer` | 编码层：包含自注意力、前馈网络以及残差连接与层归一化 |
-| `DecoderLayer` | 解码层：包含 Masked Self-Attention、Encoder–Decoder Cross-Attention 和 FFN |
-| `TransformerModel` | 整体 Encoder–Decoder 框架，负责将输入序列映射为目标语言输出 |
-
----
