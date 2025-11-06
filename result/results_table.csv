@@ -1,0 +1,5 @@
+﻿n_heads,n_layers,d_model,dropout,use_learned_pos,final_train_loss,final_val_loss
+4,2,256,0.1,TRUE,2.856,3.22
+4,2,256,0.1,FALSE,3.092,3.573
+8,3,512,0.1,TRUE,2.634,3.012
+8,3,512,0.1,FALSE,2.954,3.427
