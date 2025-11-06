@@ -161,6 +161,8 @@ results/
 
 **曲线示例说明：**
 
+<img width="640" height="480" alt="loss_curve" src="https://github.com/user-attachments/assets/4a28fbd7-d52c-432b-9b48-268115abae5a" />
+
 - 蓝色曲线（Train Loss）：训练集损失，应随 epoch 稳定下降；
 - 橙色曲线（Validation Loss）：验证集损失，通常在 5～8 轮后趋于平稳；
 - 若验证损失上升，说明模型开始过拟合，可考虑增大 dropout、引入学习率调度或早停策略。
