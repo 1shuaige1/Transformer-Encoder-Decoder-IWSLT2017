@@ -4,19 +4,7 @@
 
 ---
 
-## 模型架构
-
-模型实现了完整的：
-- Multi-Head Self-Attention  
-- Position-wise Feed Forward Network  
-- Residual Connection + Layer Normalization  
-- Sinusoidal 或 Learned 位置编码  
-
-项目支持命令行超参配置、自动下载数据集、保存模型与训练验证曲线。
-
----
-
-## 📂 项目结构
+## 项目结构
 ```
 Transformer-IWSLT2017/
 │
@@ -36,7 +24,7 @@ Transformer-IWSLT2017/
 
 ---
 
-## ⚙️ 环境与硬件要求
+## 环境与硬件要求
 
 | 组件 | 推荐版本 | 说明 |
 |------|-----------|------|
@@ -49,7 +37,7 @@ Transformer-IWSLT2017/
 
 ---
 
-## 📦 安装依赖
+## 安装依赖
 
 ```bash
 pip install -r requirements.txt
@@ -108,6 +96,38 @@ torch.cuda.manual_seed_all(42)
 - 优化器：AdamW(lr=3e-4)
 - Loss：CrossEntropy(ignore_index=pad_id)
 - Gradient Clip：max_norm=1.0
+
+---
+
+## 输出结果
+
+训练完成后，所有结果会自动保存在 `results/` 目录下，文件说明如下：
+
+| 文件名 | 说明 |
+|--------|------|
+| `epoch1.pt`, `epoch2.pt`, ... | 各训练轮次保存的模型权重（PyTorch `state_dict` 格式） |
+| `best_model.pt` | 验证集上表现最优的模型（最低验证损失） |
+| `loss_curve.png` | 训练与验证损失曲线图，可用于观察模型收敛情况 |
+| `train_log.txt` *(可选)* | 若开启日志保存，则记录每轮训练与验证损失、时间等信息 |
+
+示例输出目录结构如下：
+```
+results/
+│
+├── epoch1.pt
+├── epoch2.pt
+├── ...
+├── epoch10.pt
+├── best_model.pt
+├── loss_curve.png
+└── train_log.txt
+```
+
+**曲线示例说明：**
+
+- 蓝色曲线（Train Loss）：训练集损失，应随 epoch 稳定下降；
+- 橙色曲线（Validation Loss）：验证集损失，通常在 5～8 轮后趋于平稳；
+- 若验证损失上升，说明模型开始过拟合，可考虑增大 dropout、引入学习率调度或早停策略。
 
 ---
 
