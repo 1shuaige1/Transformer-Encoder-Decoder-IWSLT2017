@@ -67,16 +67,31 @@ numpy
 
 ---
 
-### 依赖项
-项目依赖以下 Python 包：
-- `torch>=2.0.0`：深度学习框架
-- `datasets>=2.0.0`：数据集加载工具
-- `sentencepiece`：子词分词器
-- `sacrebleu`：BLEU 评分计算
-- `numpy`：数值计算库
-- `tqdm`：进度条显示
-- `matplotlib`：结果可视化
+## 运行方式
 
+### 方式一；直接运行脚本
+```
+bash scripts/run.sh
+```
+
+### 方式二：运行命令
+```
+python src/train.py \
+  --epochs 10 \
+  --batch_size 64 \
+  --d_model 256 \
+  --n_heads 4 \
+  --n_layers 2 \
+  --d_ff 1024 \
+  --dropout 0.1 \
+  --lr 3e-4 \
+  --max_len 128 \
+  --seed 42 \
+  --limit_train_samples 48880 \
+  --device cuda \
+  --save_dir results
+
+```
 
 ### 硬件要求
 - GPU：推荐使用 CUDA 兼容的 GPU 以加速训练
