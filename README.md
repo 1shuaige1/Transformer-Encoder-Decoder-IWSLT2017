@@ -90,13 +90,12 @@ python src/train.py \
   --limit_train_samples 48880 \
   --device cuda \
   --save_dir results
-
 ```
+---
 
-### 硬件要求
-- GPU：推荐使用 CUDA 兼容的 GPU 以加速训练
-- 内存：至少 8GB RAM
-- 存储：至少 5GB 可用空间（用于数据集和模型存储）
+## 实验可复现性
+为确保实验结果完全可重复，代码中固定了所有随机种子。
+```
 
 ## 🧪 示例用法
 
