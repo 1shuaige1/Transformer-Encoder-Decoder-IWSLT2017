@@ -133,9 +133,17 @@ results/
 
 ## 模型结构概览
 
-- MultiHeadAttention：多头注意力机制（缩放点积）
-- PositionwiseFeedForward：逐位置前馈网络（Linear→ReLU→Linear）
-- PositionalEncoding：正弦/可学习位置编码
-- EncoderLayer：Self-Attention + FFN + 残差 + LayerNorm
-- DecoderLayer：Masked Self-Attn + Cross-Attn + FFN + 残差 + LayerNorm
-- TransformerModel：整体 Encoder–Decoder 架构，含嵌入与输出投影
+**模型文件：** `src/model.py`
+
+---
+
+| 模块 | 功能说明 |
+|------|-----------|
+| `MultiHeadAttention` | 多头自注意力机制（Multi-Head Self-Attention），并行计算多个注意力头以捕获不同语义关系 |
+| `PositionwiseFeedForward` | 前馈神经网络（ReLU + Dropout），对每个位置独立进行非线性变换 |
+| `PositionalEncoding` | 正弦位置编码（或可学习），为模型引入序列位置信息 |
+| `EncoderLayer` | 编码层：包含自注意力、前馈网络以及残差连接与层归一化 |
+| `DecoderLayer` | 解码层：包含 Masked Self-Attention、Encoder–Decoder Cross-Attention 和 FFN |
+| `TransformerModel` | 整体 Encoder–Decoder 框架，负责将输入序列映射为目标语言输出 |
+
+---
